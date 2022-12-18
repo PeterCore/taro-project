@@ -1,0 +1,13 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "xyzApp",
+  "description": "作业管理",
+  "appid": "wx32918fc4757bcd34",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram"
+}

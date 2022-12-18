@@ -1,0 +1,34 @@
+.modal-mask {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+}
+.login-modal {
+  width: 400px;
+  height: 500px;
+  border-radius: 20px;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 50px;
+  line-height: 50px;
+  box-shadow: 0 0 5px #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  position: relative;
+}
+.modal-header {
+  text-align: center;
+  font-weight: bold;
+}
+.close {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  bottom: -80px;
+  left: 170px;
+}

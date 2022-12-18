@@ -1,0 +1,171 @@
+/* colors
+-------------------------- */
+$color-primary: #d87182 !default;
+$color-dark: #333 !default;
+$color-dark2: #666 !default;
+$color-light: #888 !default;
+
+/* button-colors
+-------------------------- */
+$btn-active: #f26d83 !default;
+$btn-disabled: #ccc !default;
+
+$btn-disabled-1: mix(#fff, $btn-active, 70%) !default;
+/* 53a8ff */
+
+/* background-colors
+-------------------------- */
+$bg-color-base: #fff !default;
+$bg-color-light: #f9f9f9 !default; //页面浅灰背景&图片浅灰背景
+$bg-color-danger: #f9efef !default; //页面浅红背景&按钮边框
+$bg-color-panel: #ec5d75 !default;
+
+/* tag-colors
+-------------------------- */
+$tag-primary: #d87182 !default;
+$tag-dark: #555 !default;
+
+/* methods
+-------------------------- */
+// 背景图片地址和大小
+@mixin bg($url) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+// 定位上下左右居中
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// 定位上下居中
+@mixin ct {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin ar {
+  .arrow-container {
+    width: 55px;
+    height: 55px;
+    overflow: hidden;
+    .arrow-right {
+      width: 55px;
+      height: 55px;
+      object-fit: cover;
+    }
+  }
+}
+
+// 定位左右居中
+@mixin cl {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// 宽高
+@mixin wh($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+// 字体大小，颜色
+@mixin sc($size, $color) {
+  font-size: $size;
+  color: $color;
+}
+
+// flex 布局和 子元素 对其方式
+@mixin fj($type: space-between) {
+  display: flex;
+  justify-content: $type;
+}
+
+@mixin dropdown{
+  border-radius: 16px;
+  margin:  30px 0;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+  // box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.1);
+  .content{
+    // height: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid #f8f8f8;
+    .title {
+      height: 60px;
+      line-height: 60px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      font-size: 28px;
+      font-weight: 400;
+      color: $color-light;
+    }
+    .arrow-down {
+      width: 36px;
+      height: 36px;
+      margin-right : 10px;
+
+      // display: inline-block;
+      // vertical-align: top;
+      // border-left: 0.15px solid currentColor;
+      // border-bottom: 0.15px solid currentColor;
+      // transform: rotate(180deg);
+      // margin-left: 0.38px;
+      // margin-top: -0.25px;
+    }
+    .arrow-up{
+      width: 36px;
+      height: 36px;
+      margin-right : 10px;
+      transform: rotate(180deg);
+    }
+
+  }
+
+}
+
+@mixin reduce(){
+  animation: reduce-kf 1s infinite;
+  animation-iteration-count: 1 ;
+}
+
+@keyframes reduce-kf{
+  from {
+      // opacity: 0;
+      transform: scale(1);
+  }
+  to {
+      // opacity: 1;
+      transform: scale(0.5);
+  }
+}
+
+@mixin enlarge(){
+  animation: scale-kf 1s infinite;
+  animation-iteration-count: 1 ;
+}
+
+@keyframes enlarge-kf{
+  from {
+      opacity: 0;
+      transform: scale(0.6);
+  }
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
