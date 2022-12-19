@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hook";
 import "./index.scss";
 import { fetchGrades } from "./gradeSlice";
 import { fetchCourses } from "./courseSlice";
+import ICheckBox from "@/components/ICheckBox";
 
 const Index = () => {
   const grades = useAppSelector((state) => state.grades.grades);
@@ -74,6 +75,13 @@ const Index = () => {
               <Image className="arrow-right" src={dropDownImg}></Image>
             </View>
           </View>
+          {/* <ICheckBox
+            checked={false}
+            label="美术"
+            onChange={(value) => {
+              console.log(value);
+            }} */}
+          />
         </View>
       </View>
     </View>
