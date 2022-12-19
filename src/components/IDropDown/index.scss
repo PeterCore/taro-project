@@ -1,0 +1,58 @@
+@import "../../styles/mixin.scss";
+
+.drop_container{
+    display: flex;
+    .dropdown_component{
+        min-height: 80px;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        border-bottom: 1px solid #f8f8f8;
+        .title {
+            height: 60px;
+            line-height: 60px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            font-size: 28px;
+            font-weight: 400;
+            color: $color-light;
+        }
+        .arrow_down {
+            width: 36px;
+            height: 36px;
+            margin-right : 10px;
+            background-image: url(../../assets/images/user/expand_more_black.png);
+            background-size: contain;
+
+        }
+        .arrow_up{
+            width: 36px;
+            height: 36px;
+            margin-right : 10px;
+            transform: rotate(180deg);
+            background-image: url(../../assets/images/user/expand_more_black.png);
+            background-size: contain;
+        }
+
+    }
+    .grade-collapse{
+        display: none;
+        visibility: hidden;
+    }
+    .grade-expand{
+        position: fixed;
+        display: block;
+        box-sizing : border-box;
+        visibility: visible;
+        z-index: 5000;
+        border-radius: 10px;
+        width: 85%;
+        top: auto;
+        box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.1);
+    }
+}
+
+
+

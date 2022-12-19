@@ -6,7 +6,7 @@ import "./index.scss";
 type Props = {
   checked: boolean;
   label: string;
-  onChange: (checked: boolean) => void;
+  onChange?: (checked: boolean) => void;
 };
 
 const ICheckBox: FC<Props> = ({ checked, label, onChange }) => {
@@ -22,7 +22,9 @@ const ICheckBox: FC<Props> = ({ checked, label, onChange }) => {
       className="checkbox_components"
       onClick={() => {
         setSelected(!selected);
-        onChange(!selected);
+        if (onChange != null) {
+          onChange(!selected);
+        }
       }}
     >
       <View className="label">{label}</View>

@@ -8,6 +8,13 @@ page {
   // background-size: cover;
 }
 
+.lastContent{
+  width: 100vw;
+  height: 100px;
+  background-color: $bg-color-panel
+}
+
+
 .child-page{
   @include wh(100%, 100%);
   overflow: scroll;
@@ -45,9 +52,9 @@ page {
         color: #333;
       }
     }
+
     .dropdown{
       border-radius: 16px;
-      display: flex;
       position: relative;
       justify-content: space-between;
       background-color: white;

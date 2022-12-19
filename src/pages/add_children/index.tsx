@@ -12,6 +12,7 @@ import "./index.scss";
 import { fetchGrades } from "./gradeSlice";
 import { fetchCourses } from "./courseSlice";
 import ICheckBox from "@/components/ICheckBox";
+import IDropDown from "@/components/IDropDown";
 
 const Index = () => {
   const grades = useAppSelector((state) => state.grades.grades);
@@ -39,6 +40,34 @@ const Index = () => {
               onInput={(e) => setName(e.detail.value)}
             />
           </View>
+          {/* <IDropDown
+            label={grade.length == 0 ? "请选择年级" : grade}
+            expand={expand}
+            onChange={(value) => {
+              console.log(value);
+              setExpand(value);
+            }}
+            renderOverlay={grades.map((item, _) => (
+              <View
+                className="grade"
+                onClick={() => {
+                  console.log(item.grade);
+                  setGrade(item.grade);
+                  setExpand(!expand);
+                }}
+              >
+                {item.grade}
+              </View>
+            ))}
+          ></IDropDown>
+          <IDropDown
+            label="请选择课程"
+            expand={expand}
+            onChange={(value) => {}}
+          ></IDropDown> */}
+          {/* <View
+            className={expand == false ? "grade-collapse" : "grade-expand"}
+          ></View> */}
           <View
             className="dropdown"
             onClick={() => {
@@ -75,13 +104,6 @@ const Index = () => {
               <Image className="arrow-right" src={dropDownImg}></Image>
             </View>
           </View>
-          {/* <ICheckBox
-            checked={false}
-            label="美术"
-            onChange={(value) => {
-              console.log(value);
-            }} */}
-          />
         </View>
       </View>
     </View>

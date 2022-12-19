@@ -1,0 +1,15 @@
+page {
+  background-color: white;
+  padding         : 14px;
+  box-sizing      : border-box;
+  color           : #333;
+  // background: url('./hook.png') no-repeat;
+  // background-size: cover;
+}
+
+
+.wrapper {
+  display       : flex;
+  flex-direction: column;
+}
+
