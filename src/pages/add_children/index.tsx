@@ -19,7 +19,8 @@ const Index = () => {
   const courses = useAppSelector((state) => state.course.courses);
   const dispath = useAppDispatch();
   const [name, setName] = useState("");
-  const [expand, setExpand] = useState(false);
+  const [gexpand, setGExpand] = useState(false);
+  const [cexpand, setCExpand] = useState(false);
   const [grade, setGrade] = useState("");
 
   useEffect(() => {
@@ -42,10 +43,10 @@ const Index = () => {
           </View>
           <IDropDown
             label={grade.length == 0 ? "请选择年级" : grade}
-            expand={expand}
+            expand={gexpand}
             onChange={(value) => {
               console.log(value);
-              setExpand(value);
+              setGExpand(value);
             }}
             renderOverlay={grades.map((item, _) => (
               <View
@@ -53,7 +54,7 @@ const Index = () => {
                 onClick={() => {
                   console.log(item.grade);
                   setGrade(item.grade);
-                  setExpand(!expand);
+                  setGExpand(!gexpand);
                 }}
               >
                 {item.grade}
@@ -63,8 +64,36 @@ const Index = () => {
 
           <IDropDown
             label="请选择课程"
-            expand={false}
-            onChange={(value) => {}}
+            expand={cexpand}
+            onChange={(value) => {
+              console.log(value);
+              setCExpand(value);
+            }}
+            renderOverlay={
+              <View className="course-container">
+                <View className="dash-top">
+                  <View className="left-checkbox">
+                    <ICheckBox
+                      label="全部"
+                      checked={false}
+                      onChange={(e) => {}}
+                    ></ICheckBox>
+                  </View>
+                  <View className="right-button">完 成</View>
+                </View>
+                <View className="course-wrapper">
+                  {courses.map((item, _) => (
+                    <View className="item">
+                      <ICheckBox
+                        label={item.cname}
+                        checked={false}
+                        onChange={(e) => {}}
+                      ></ICheckBox>
+                    </View>
+                  ))}
+                </View>
+              </View>
+            }
           ></IDropDown>
         </View>
       </View>
