@@ -36,7 +36,7 @@ const IDropDown: FC<Props> = ({ expand, label, onChange, renderOverlay }) => {
         <View className="title">{label}</View>
         <View className={expand == true ? "arrow_up" : "arrow_down"}></View>
       </View>
-      <View className={expand == false ? "grade-collapse" : "grade-expand"}>
+      <View className={expand == false ? "collapse" : "expand"}>
         {renderOverlay}
       </View>
     </View>

@@ -40,7 +40,7 @@ const Index = () => {
               onInput={(e) => setName(e.detail.value)}
             />
           </View>
-          {/* <IDropDown
+          <IDropDown
             label={grade.length == 0 ? "请选择年级" : grade}
             expand={expand}
             onChange={(value) => {
@@ -60,50 +60,12 @@ const Index = () => {
               </View>
             ))}
           ></IDropDown>
+
           <IDropDown
             label="请选择课程"
-            expand={expand}
+            expand={false}
             onChange={(value) => {}}
-          ></IDropDown> */}
-          {/* <View
-            className={expand == false ? "grade-collapse" : "grade-expand"}
-          ></View> */}
-          <View
-            className="dropdown"
-            onClick={() => {
-              setExpand(!expand);
-            }}
-          >
-            <View className="content">
-              <View className="title">
-                {grade.length == 0 ? "请选择年级" : grade}
-              </View>
-              <Image
-                className={expand === false ? "arrow-down" : "arrow-up"}
-                src={dropDownImg}
-              ></Image>
-            </View>
-          </View>
-          <View className={expand == false ? "grade-collapse" : "grade-expand"}>
-            {grades.map((item, _) => (
-              <View
-                className="grade"
-                onClick={() => {
-                  console.log(item.grade);
-                  setGrade(item.grade);
-                  setExpand(false);
-                }}
-              >
-                {item.grade}
-              </View>
-            ))}
-          </View>
-          <View className="course-check-expand" onClick={() => {}}>
-            <View className="course-view">
-              <View className="course-title">请选择课程</View>
-              <Image className="arrow-right" src={dropDownImg}></Image>
-            </View>
-          </View>
+          ></IDropDown>
         </View>
       </View>
     </View>
