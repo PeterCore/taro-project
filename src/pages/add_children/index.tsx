@@ -3,23 +3,44 @@ import { View, Input } from "@tarojs/components";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import "./index.scss";
 import { fetchGrades } from "./gradeSlice";
-import { fetchCourses } from "./courseSlice";
+import {
+  addAll,
+  addCourse,
+  Course,
+  deleteAll,
+  deleteCourse,
+  fetchCourses,
+} from "./courseSlice";
 import ICheckBox from "@/components/ICheckBox";
 import IDropDown from "@/components/IDropDown";
+import { useDidShow } from "@tarojs/taro";
 
 const Index = () => {
+  const dispath = useAppDispatch();
   const grades = useAppSelector((state) => state.grades.grades);
   const courses = useAppSelector((state) => state.course.courses);
-  const dispath = useAppDispatch();
+  const selectCourses = useAppSelector((state) => state.course.selecteds);
   const [name, setName] = useState("");
   const [expands, setExpands] = useState<boolean[]>([false, false]);
   const [grade, setGrade] = useState("");
-  const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
   const [all, setAll] = useState(false);
-  useEffect(() => {
+
+  useDidShow(() => {
     dispath(fetchGrades());
     dispath(fetchCourses());
-  }, []);
+  });
+
+  useEffect(() => {}, [courses]);
+
+  const allSelected = (selected: boolean) => {
+    setExpands([false, false]);
+    if (selected) {
+      dispath(addAll());
+    } else {
+      dispath(deleteAll());
+    }
+    setAll(selected);
+  };
 
   return (
     <View className="child-page">
@@ -73,20 +94,7 @@ const Index = () => {
                     <ICheckBox
                       label="全部"
                       checked={all}
-                      onChange={(selected) => {
-                        var curCourses: string[] = selectedCourses;
-                        setAll(selected);
-                        if (selected) {
-                          courses.forEach((item, _) => {
-                            if (!curCourses.includes(item.cname)) {
-                              curCourses.push(item.cname);
-                            }
-                          });
-                          setSelectedCourses(curCourses);
-                        } else {
-                          setSelectedCourses([]);
-                        }
-                      }}
+                      onChange={(selected) => allSelected(selected)}
                     ></ICheckBox>
                   </View>
                   <View
@@ -103,17 +111,13 @@ const Index = () => {
                     <View className="item">
                       <ICheckBox
                         label={item.cname}
-                        checked={selectedCourses.includes(item.cname)}
-                        onChange={(_) => {
-                          var curCourses: string[] = selectedCourses;
-                          const index = curCourses.indexOf(item.cname);
-                          if (index !== -1) {
-                            curCourses.splice(index, 1);
+                        checked={selectCourses.includes(item.cname)}
+                        onChange={(value) => {
+                          if (value) {
+                            dispath(addCourse(item.cname));
                           } else {
-                            curCourses.push(item.cname);
+                            dispath(deleteCourse(item.cname));
                           }
-                          setSelectedCourses(curCourses);
-                          console.log(item.cname);
                         }}
                       ></ICheckBox>
                     </View>
@@ -122,6 +126,11 @@ const Index = () => {
               </View>
             }
           ></IDropDown>
+          <View className="selected-course">
+            {selectCourses.map((item, _) => (
+              <View className="course-item">{`${item},`}</View>
+            ))}
+          </View>
         </View>
       </View>
     </View>

@@ -38,5 +38,5 @@ const ICheckBox: FC<Props> = ({ checked, label, onChange }) => {
   );
 };
 export default memo(ICheckBox, (oldProps, newProps) => {
-  return oldProps.checked === newProps.checked;
+  return oldProps.checked == newProps.checked;
 });

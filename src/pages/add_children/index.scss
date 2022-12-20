@@ -120,6 +120,20 @@ page {
         }
       }
     }
+    .selected-course {
+      display: flex;
+      flex-direction: row;
+      .course-item {
+        display: flex;
+        height: 20px;
+        font-size: 22px;
+        outline: 0;
+        margin-bottom: 0px;
+        margin-top: 10px;
+        background-color: white;
+        color: red;
+      }
+    }
 
 
   }

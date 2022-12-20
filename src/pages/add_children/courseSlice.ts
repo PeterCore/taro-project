@@ -10,12 +10,14 @@ export interface Course {
 type InitialState = {
     loading: boolean
     courses: Course[]
+    selecteds: string[]
     error: string
 }
 
 const initialState: InitialState = {
     loading: false,
     courses: [],
+    selecteds: [],
     error: ''
 }
 
@@ -23,7 +25,35 @@ export const fetchCourses = createAsyncThunk('course/fetchCourses', ()=>{
     return cloudFunction({ name: "getCourses" }).then((res) => res);
 });
 
-const courseSlice = createSlice({name: "course", initialState,  reducers: {},
+const courseSlice = createSlice({name: "course", initialState,  reducers: {
+   addCourse: (state, action:PayloadAction<string>) => {
+      if(state.selecteds.indexOf(action.payload) == -1) {
+        state.selecteds.push(action.payload);
+      }
+      console.log(`selecteds is ${state.selecteds}`);
+   },
+   deleteCourse:(state, action:PayloadAction<string> )=>{
+     const index = state.selecteds.indexOf(action.payload);
+    if(index!= -1) {
+      state.selecteds.splice(index, 1);
+    }
+    console.log(`selecteds is ${state.selecteds}`);
+
+   },
+   deleteAll:(state)=>{
+     state.selecteds = [];
+     console.log(`selecteds is ${state.selecteds}`);
+   },
+   addAll:(state) => {
+    var curSelected :string[] =[];
+    state.courses.forEach((item, _) => {
+      curSelected.push(item.cname);
+    })
+    state.selecteds = curSelected;
+    console.log(`selecteds is ${state.selecteds}`);
+   }
+
+},
 extraReducers: builder => {
   builder.addCase(fetchCourses.pending, state => {
     state.loading = true
@@ -44,6 +74,7 @@ extraReducers: builder => {
 }});
 
 export default courseSlice.reducer
+export const {addCourse, deleteCourse, addAll, deleteAll } = courseSlice.actions;
 
 // const userSlice = createSlice({})
 
