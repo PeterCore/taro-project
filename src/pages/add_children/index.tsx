@@ -1,12 +1,5 @@
-import React, { useCallback, useState, useEffect } from "react";
-import {
-  View,
-  Image,
-  Input,
-  Checkbox,
-  CheckboxGroup,
-} from "@tarojs/components";
-import dropDownImg from "@/assets/images/user/expand_more_black.png";
+import { useState, useEffect } from "react";
+import { View, Input } from "@tarojs/components";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import "./index.scss";
 import { fetchGrades } from "./gradeSlice";
@@ -19,8 +12,8 @@ const Index = () => {
   const courses = useAppSelector((state) => state.course.courses);
   const dispath = useAppDispatch();
   const [name, setName] = useState("");
-  const [gexpand, setGExpand] = useState(false);
-  const [cexpand, setCExpand] = useState(false);
+  const [gexpand, setGexpand] = useState(false);
+  const [cexpand, setCexpand] = useState(false);
   const [grade, setGrade] = useState("");
 
   useEffect(() => {
@@ -46,7 +39,7 @@ const Index = () => {
             expand={gexpand}
             onChange={(value) => {
               console.log(value);
-              setGExpand(value);
+              setGexpand(value);
             }}
             renderOverlay={grades.map((item, _) => (
               <View
@@ -54,7 +47,7 @@ const Index = () => {
                 onClick={() => {
                   console.log(item.grade);
                   setGrade(item.grade);
-                  setGExpand(!gexpand);
+                  setGexpand(!gexpand);
                 }}
               >
                 {item.grade}
@@ -66,8 +59,8 @@ const Index = () => {
             label="请选择课程"
             expand={cexpand}
             onChange={(value) => {
-              console.log(value);
-              setCExpand(value);
+              console.log(`请选择课程 ${value}`);
+              setCexpand(value);
             }}
             renderOverlay={
               <View className="course-container">
