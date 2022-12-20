@@ -15,6 +15,7 @@ import ICheckBox from "@/components/ICheckBox";
 import IDropDown from "@/components/IDropDown";
 import { useDidShow } from "@tarojs/taro";
 import { useToast } from "taro-hooks";
+import { cloudFunction } from "@/services/cloudFunction";
 
 const Index = () => {
   const dispath = useAppDispatch();
@@ -64,6 +65,21 @@ const Index = () => {
       });
       return;
     }
+
+    cloudFunction({
+      name: "bind_courses",
+      data: {
+        courseInfo: { name: name, grade: grade, courses: selectCourses },
+      },
+    })
+      .then((res) => {
+        if (res.code == 0) {
+          showToast({ title: res.msg, icon: "success" });
+        } else if (res.code == 1) {
+          showToast({ title: res.msg, icon: "error" });
+        }
+      })
+      .catch((err) => {});
   };
 
   return (
