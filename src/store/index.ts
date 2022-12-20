@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
 import courseReducer from '@/pages/add_children/courseSlice'
-import tabbarReducer from '@/components/zctabbar/tabbarSlice'
 import thasAccountReducer from '@/pages/login/verifyAccountSlice'
 import accountReducer from '@/pages/user/userInfoSlice'
 import gradesReducer from '@/pages/add_children/gradeSlice'
@@ -8,7 +7,6 @@ import gradesReducer from '@/pages/add_children/gradeSlice'
 const store = configureStore({
   reducer: {
     course: courseReducer,
-    tab: tabbarReducer,
     thas: thasAccountReducer,
     account:accountReducer,
     grades: gradesReducer

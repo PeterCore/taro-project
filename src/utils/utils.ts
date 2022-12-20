@@ -106,9 +106,6 @@ export const getAccountInfo = () => {
   return  Taro.getStorageSync("userInfo");
 }
 
-
-
-
 export const removeAccountInfo = (): Promise<boolean> => {
   return new Promise<boolean>((resolve, _) => {
     Taro.removeStorage({

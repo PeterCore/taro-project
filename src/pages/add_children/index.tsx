@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { View, Input } from "@tarojs/components";
+import { View, Input, Button } from "@tarojs/components";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import "./index.scss";
 import { fetchGrades } from "./gradeSlice";
@@ -14,6 +14,7 @@ import {
 import ICheckBox from "@/components/ICheckBox";
 import IDropDown from "@/components/IDropDown";
 import { useDidShow } from "@tarojs/taro";
+import { useToast } from "taro-hooks";
 
 const Index = () => {
   const dispath = useAppDispatch();
@@ -24,6 +25,7 @@ const Index = () => {
   const [expands, setExpands] = useState<boolean[]>([false, false]);
   const [grade, setGrade] = useState("");
   const [all, setAll] = useState(false);
+  const [showToast] = useToast({ mask: true, icon: "error" });
 
   useDidShow(() => {
     dispath(fetchGrades());
@@ -40,6 +42,28 @@ const Index = () => {
       dispath(deleteAll());
     }
     setAll(selected);
+  };
+
+  const addStudents = () => {
+    if (name.trim().length == 0) {
+      showToast({
+        title: "请输入姓名",
+        icon: "error",
+      });
+      return;
+    } else if (grade.trim().length == 0) {
+      showToast({
+        title: "请选择年级",
+        icon: "error",
+      });
+      return;
+    } else if (selectCourses.length == 0) {
+      showToast({
+        title: "请选择课程",
+        icon: "error",
+      });
+      return;
+    }
   };
 
   return (
@@ -131,6 +155,9 @@ const Index = () => {
               <View className="course-item">{`${item},`}</View>
             ))}
           </View>
+          <Button className="button" onClick={() => addStudents()}>
+            添 加
+          </Button>
         </View>
       </View>
     </View>

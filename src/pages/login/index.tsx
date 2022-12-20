@@ -79,7 +79,7 @@ const Index = () => {
     }
   };
 
-  //学生登录登录
+  //学生登录
   const slogin = () => {
     cloudFunction({
       name: "s_login",
