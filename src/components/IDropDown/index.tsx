@@ -15,13 +15,13 @@ const IDropDown: FC<Props> = ({ expand, label, onChange, renderOverlay }) => {
 
   const cls = classnames({
     drop__container: true,
-    content__collapse: !expand,
-    content__expand: expand,
+    content__collapse: !isExpand,
+    content__expand: isExpand,
   });
 
   useEffect(() => {
     setIsExpand(expand);
-  }, []);
+  }, [expand]);
 
   return (
     <View className="drop__container">
@@ -29,16 +29,16 @@ const IDropDown: FC<Props> = ({ expand, label, onChange, renderOverlay }) => {
         className="dropdown__component"
         onClick={() => {
           if (onChange != null) {
-            onChange(!expand);
+            onChange(!isExpand);
           }
-          setIsExpand(!expand);
+          setIsExpand(!isExpand);
         }}
       >
         <View className="title">{label}</View>
         <View
           className={classnames({
             arrow__direction: true,
-            "arrow__direction--up": expand,
+            "arrow__direction--up": isExpand,
           })}
         ></View>
       </View>
@@ -48,5 +48,5 @@ const IDropDown: FC<Props> = ({ expand, label, onChange, renderOverlay }) => {
 };
 
 export default memo(IDropDown, (oldProps, newProps) => {
-  return oldProps.expand === newProps.expand;
+  return oldProps.expand == newProps.expand;
 });

@@ -12,10 +12,10 @@ const Index = () => {
   const courses = useAppSelector((state) => state.course.courses);
   const dispath = useAppDispatch();
   const [name, setName] = useState("");
-  const [gexpand, setGexpand] = useState(false);
-  const [cexpand, setCexpand] = useState(false);
+  const [expands, setExpands] = useState<boolean[]>([false, false]);
   const [grade, setGrade] = useState("");
-
+  const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
+  const [all, setAll] = useState(false);
   useEffect(() => {
     dispath(fetchGrades());
     dispath(fetchCourses());
@@ -25,6 +25,7 @@ const Index = () => {
     <View className="child-page">
       <View className="bgtopWrap">
         <View className="childWrap">
+          <View className="title">学生姓名</View>
           <View className="inpuWrapName">
             <Input
               type="text"
@@ -34,12 +35,15 @@ const Index = () => {
               onInput={(e) => setName(e.detail.value)}
             />
           </View>
+          <View className="title">年级</View>
           <IDropDown
             label={grade.length == 0 ? "请选择年级" : grade}
-            expand={gexpand}
+            expand={expands[0]}
             onChange={(value) => {
               console.log(value);
-              setGexpand(value);
+              var states = expands;
+              states[0] = value;
+              setExpands([value, false]);
             }}
             renderOverlay={grades.map((item, _) => (
               <View
@@ -47,20 +51,20 @@ const Index = () => {
                 onClick={() => {
                   console.log(item.grade);
                   setGrade(item.grade);
-                  setGexpand(!gexpand);
+                  setExpands([false, false]);
                 }}
               >
                 {item.grade}
               </View>
             ))}
           ></IDropDown>
-
+          <View className="title">课程</View>
           <IDropDown
             label="请选择课程"
-            expand={cexpand}
+            expand={expands[1]}
             onChange={(value) => {
+              setExpands([false, value]);
               console.log(`请选择课程 ${value}`);
-              setCexpand(value);
             }}
             renderOverlay={
               <View className="course-container">
@@ -68,19 +72,49 @@ const Index = () => {
                   <View className="left-checkbox">
                     <ICheckBox
                       label="全部"
-                      checked={false}
-                      onChange={(e) => {}}
+                      checked={all}
+                      onChange={(selected) => {
+                        var curCourses: string[] = selectedCourses;
+                        setAll(selected);
+                        if (selected) {
+                          courses.forEach((item, _) => {
+                            if (!curCourses.includes(item.cname)) {
+                              curCourses.push(item.cname);
+                            }
+                          });
+                          setSelectedCourses(curCourses);
+                        } else {
+                          setSelectedCourses([]);
+                        }
+                      }}
                     ></ICheckBox>
                   </View>
-                  <View className="right-button">完 成</View>
+                  <View
+                    className="right-button"
+                    onClick={() => {
+                      setExpands([false, false]);
+                    }}
+                  >
+                    完 成
+                  </View>
                 </View>
                 <View className="course-wrapper">
                   {courses.map((item, _) => (
                     <View className="item">
                       <ICheckBox
                         label={item.cname}
-                        checked={false}
-                        onChange={(e) => {}}
+                        checked={selectedCourses.includes(item.cname)}
+                        onChange={(_) => {
+                          var curCourses: string[] = selectedCourses;
+                          const index = curCourses.indexOf(item.cname);
+                          if (index !== -1) {
+                            curCourses.splice(index, 1);
+                          } else {
+                            curCourses.push(item.cname);
+                          }
+                          setSelectedCourses(curCourses);
+                          console.log(item.cname);
+                        }}
                       ></ICheckBox>
                     </View>
                   ))}
