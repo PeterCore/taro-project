@@ -1,4 +1,4 @@
-import { FC, memo, useState } from "react";
+import { FC, memo, useEffect, useState } from "react";
 import classnames from "classnames";
 import { View } from "@tarojs/components";
 import "./index.scss";
@@ -17,6 +17,11 @@ const ICheckBox: FC<Props> = ({ checked, label, onChange }) => {
     checked: selected,
     check: !selected,
   });
+
+  useEffect(() => {
+    setSelected(checked);
+  }, [checked]);
+
   return (
     <View
       className="checkbox_components"
@@ -33,5 +38,5 @@ const ICheckBox: FC<Props> = ({ checked, label, onChange }) => {
   );
 };
 export default memo(ICheckBox, (oldProps, newProps) => {
-  return oldProps.checked === newProps.checked;
+  return oldProps.checked == newProps.checked;
 });

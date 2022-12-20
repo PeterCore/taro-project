@@ -52,6 +52,16 @@ page {
         color: #333;
       }
     }
+    .title{
+      height: 20px;
+      font-size: 22px;
+      width: 100%;
+      outline: 0;
+      margin-bottom: 0px;
+      margin-top: 10px;
+      background-color: white;
+      color: #333;
+    }
     .grade{
       height: 44px;
       font-size: 28px;
@@ -66,6 +76,66 @@ page {
       color: #333;
       border-bottom: 1px solid #f8f8f8;
     }
+    .course-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .dash-top{
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 20px 10px;
+        padding-bottom: 10px;
+        background-color: white;
+        border-bottom: 1px solid #f8f8f8;
+        .left-checkbox{
+          margin-left: 10px;
+          margin-top: 10px;
+        }
+        .right-button{
+          font-size: 20px;
+
+          display         : flex;
+          width           : 80px;
+          height: 44px;
+          text-align: center;
+          background-color: rgb(51,204,153);
+          border-radius   : 10px;
+          color:white;
+          align-items: center;
+          justify-content: center;
+        }
+
+      }
+      .course-wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        .item {
+           padding: auto;
+           margin: 10px;
+        }
+      }
+    }
+    .selected-course {
+      display: flex;
+      flex-direction: row;
+      .course-item {
+        display: flex;
+        height: 20px;
+        font-size: 22px;
+        outline: 0;
+        margin-bottom: 0px;
+        margin-top: 10px;
+        background-color: white;
+        color: red;
+      }
+    }
+
 
   }
 

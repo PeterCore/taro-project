@@ -1,10 +1,10 @@
 @import "../../styles/mixin.scss";
 
 $width: calc(65% - 36px);
-.drop_container{
+.drop__container{
     display: inline-block;
     // background-color: $bg-color-panel;
-    .dropdown_component{
+    .dropdown__component{
         min-height: 80px;
         width: 85vw;
         display: flex;
@@ -22,37 +22,32 @@ $width: calc(65% - 36px);
             font-weight: 400;
             color: $color-light;
         }
-        .arrow_down {
+        .arrow__direction {
             width: 36px;
             height: 36px;
             background-image: url(../../assets/images/user/expand_more_black.png);
             background-size: contain;
-
+            &.arrow__direction--up{
+                transform: rotate(180deg);
+            }
         }
-        .arrow_up{
-            width: 36px;
-            height: 36px;
-            transform: rotate(180deg);
-            background-image: url(../../assets/images/user/expand_more_black.png);
-            background-size: contain;
-        }
-
     }
-    .collapse{
+    &.content__collapse{
         display: none;
         visibility: hidden;
     }
-    .expand{
+    &.content__expand{
         position: fixed;
         display: block;
         box-sizing : border-box;
         visibility: visible;
-        z-index: 5000;
+        z-index: 5001;
         border-radius: 10px;
         top: auto;
         width: 85vw;
         left: 10;
         right: 10;
+        background-color: white;
         box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.1);
     }
 }
