@@ -41,7 +41,7 @@ const User = () => {
     } else if (accountInfo.userType === UserType.student) {
       setList([
         { type: CellType.setting, title: "设置" },
-        { type: CellType.modifer, title: "添加孩子" },
+        { type: CellType.modifer, title: "添加/修改孩子" },
       ]);
     } else if (accountInfo.userType === UserType.teacher) {
       setList([
@@ -84,7 +84,7 @@ const User = () => {
         break;
       case CellType.modifer:
         if (account.userType == UserType.student) {
-          toPage("/pages/add_children/index");
+          toPage("/pages/children/index");
         } else if (account.userType == UserType.teacher) {
         }
 
@@ -97,7 +97,7 @@ const User = () => {
   return (
     <View className="user-page">
       <View className="not-login">
-        <View className="to-login" onClick={pushUserInfo.bind(this)}>
+        <View className="to-login" onClick={() => pushUserInfo()}>
           <View className="left">
             <View className="avatar-container">
               <Image

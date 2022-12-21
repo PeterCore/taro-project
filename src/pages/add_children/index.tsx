@@ -16,6 +16,7 @@ import IDropDown from "@/components/IDropDown";
 import { useDidShow } from "@tarojs/taro";
 import { useToast } from "taro-hooks";
 import { cloudFunction } from "@/services/cloudFunction";
+import Taro from "@tarojs/taro";
 
 const Index = () => {
   const dispath = useAppDispatch();
@@ -75,6 +76,9 @@ const Index = () => {
       .then((res) => {
         if (res.code == 0) {
           showToast({ title: res.msg, icon: "success" });
+          Taro.navigateBack({
+            delta: 1,
+          });
         } else if (res.code == 1) {
           showToast({ title: res.msg, icon: "error" });
         }
@@ -167,9 +171,11 @@ const Index = () => {
             }
           ></IDropDown>
           <View className="selected-course">
-            {selectCourses.map((item, _) => (
-              <View className="course-item">{`${item},`}</View>
-            ))}
+            {selectCourses.length > 0
+              ? selectCourses.map((item, _) => (
+                  <View className="course-item">{`${item},`}</View>
+                ))
+              : null}
           </View>
           <Button className="button" onClick={() => addStudents()}>
             添 加

@@ -46,7 +46,7 @@ const UserInfo = () => {
           <View className="content">{item.content}</View>
         </View>
       ))}
-      <View className="logout" onClick={logout.bind(this)}>
+      <View className="logout" onClick={() => logout()}>
         退出登录
       </View>
     </View>

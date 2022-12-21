@@ -27,15 +27,6 @@ const Index = () => {
     const identity = `${params.type}`;
     setUserType(identity);
     setTitle(identity === "0" ? "学生家长" : "老师");
-
-    // cloudFunction({ name: "getCourses" }).then((res) => {
-    //   let t_courses: course[] = res as course[];
-    //   setCourses(t_courses || []);
-    // });
-    //   cloudFunction({ name: "getGrades" }).then((res) => {
-    //     let t_grades: grade[] = res as grade[];
-    //     setGrades(t_grades || []);
-    //   });
   }, []);
 
   const loginRegister = () => {
@@ -396,7 +387,7 @@ const Index = () => {
         </Checkbox.Group>
       </View> */}
 
-      <Button className="button" onClick={loginRegister.bind(this)}>
+      <Button className="button" onClick={() => loginRegister()}>
         {type === LoginType.login ? "登 录" : "注 册"}
       </Button>
     </View>

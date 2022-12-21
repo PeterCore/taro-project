@@ -1,0 +1,41 @@
+@import '../../styles/mixin.scss';
+
+.cell {
+  display: flex;
+  box-sizing: border-box;
+  border-radius: 16px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 20px;
+  justify-content: space-between;
+  background-color: white;
+  flex-direction: row;
+  align-items: center;
+  border: 0.5px solid #ededed;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+  .left {
+    display: flex;
+    flex-direction: column;
+    .row{
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      .title{
+        font-size: 30px;
+        line-height: 20px;
+        outline: 0;
+        color: #666;
+      }
+      .content{
+        font-size: 30px;
+        line-height: 20px;
+        margin-left: 10px;
+        color: #666;
+      }
+    }
+
+  }
+  @include ar
+}

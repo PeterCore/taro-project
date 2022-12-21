@@ -15,15 +15,6 @@ exports.main = async (event, context) => {
     throwOnNotFound: false
   })
   return new Promise((resolve, reject) => {
-    // db.collection('s_course')
-    //   .add({
-    //     data: { ...courseInfo, openid: wxContext.OPENID }
-    //   }).then(res => {
-    //     resolve({ code: 0, msg: '添加成功', result: null })
-
-    //   }).catch(() => {
-    //     reject('数据错误')
-    //   })
     db.collection('s_course').where({ openid: wxContext.OPENID, name: courseInfo.name })
       .get()
       .then(res => {

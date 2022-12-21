@@ -3,13 +3,15 @@ import courseReducer from '@/pages/add_children/courseSlice'
 import thasAccountReducer from '@/pages/login/verifyAccountSlice'
 import accountReducer from '@/pages/user/userInfoSlice'
 import gradesReducer from '@/pages/add_children/gradeSlice'
+import stdCoursesReducer from '@/pages/children/childrenSlice'
 
 const store = configureStore({
   reducer: {
     course: courseReducer,
     thas: thasAccountReducer,
     account:accountReducer,
-    grades: gradesReducer
+    grades: gradesReducer,
+    ccs: stdCoursesReducer
   }
 })
 

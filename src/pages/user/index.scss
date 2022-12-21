@@ -1,21 +1,18 @@
 @import '../../styles/mixin.scss';
 
-page {
-  background-color: #efefef;
-  padding         : 0 0 0 0;
-  // box-sizing      : border-box;
-  // background: url('./hook.png') no-repeat;
-  // background-size: cover;
-}
-
-
-
+// page {
+//   background-color: #efefef;
+//   padding         : 0 0 0 0;
+//   // box-sizing      : border-box;
+//   // background: url('./hook.png') no-repeat;
+//   // background-size: cover;
+// }
 
 .user-page {
   @include wh(100%,100vh);
   background-color: white;
   display: flex;
-  overflow: scroll;
+  // overflow: scroll;
   flex-direction: column;
   box-sizing      : border-box;
   .not-login {

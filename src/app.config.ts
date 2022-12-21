@@ -1,11 +1,13 @@
 export default {
   lazyCodeLoading: "requiredComponents",
-  pages: [ 'pages/home/index','pages/user/index','pages/pick_login/index','pages/login/index','pages/userinfo/index','pages/add_children/index'],
+  pages: [ 'pages/home/index','pages/user/index','pages/pick_login/index','pages/login/index','pages/userinfo/index','pages/children/index','pages/add_children/index'],
   window: {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#fff",
     navigationBarTitleText: "WeChat",
     navigationBarTextStyle: "black",
+    disableScroll :true,
+
   },
   tabBar: {
     list: [

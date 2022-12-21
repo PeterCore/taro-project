@@ -1,0 +1,66 @@
+@import '../../styles/mixin.scss';
+
+page {
+  background-color: white;
+  padding-top        : 14px;
+  box-sizing      : border-box;
+  color           : #333;
+  // background: url('./hook.png') no-repeat;
+  // background-size: cover;
+}
+
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  .scroll{
+    height: 100%;
+    width: 100%;
+    // .cell {
+    //   display: flex;
+    //   box-sizing: border-box;
+    //   border-radius: 16px;
+    //   margin-top: 20px;
+    //   margin-left: 20px;
+    //   margin-right: 20px;
+    //   padding: 20px;
+    //   justify-content: space-between;
+    //   background-color: white;
+    //   flex-direction: row;
+    //   align-items: center;
+    //   border: 0.5px solid #ededed;
+    //   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+    //   .left {
+    //     display: flex;
+    //     flex-direction: column;
+    //     .row{
+    //       box-sizing: border-box;
+    //       display: flex;
+    //       flex-direction: row;
+    //       margin-bottom: 20px;
+    //       .title{
+    //         height: 20px;
+    //         font-size: 30px;
+    //         width: 100%;
+    //         outline: 0;
+    //         margin-bottom: 0px;
+    //         color: #666;
+
+    //       }
+    //       .content{
+    //         height: 20px;
+    //         font-size: 30px;
+    //         width: 100%;
+    //         outline: 0;
+    //         margin-bottom: 0px;
+    //         margin-left: 10px;
+    //         color: #666;
+    //       }
+    //     }
+
+    //   }
+    //   @include ar
+    // }
+  }
+}
