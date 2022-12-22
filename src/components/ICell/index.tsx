@@ -1,5 +1,5 @@
 import { View, Image } from "@tarojs/components";
-import { FC, memo } from "react";
+import { FC, memo, useState } from "react";
 import arrowImg from "@/assets/images/user/arrow_right.png";
 import "./index.scss";
 
@@ -9,12 +9,21 @@ export interface Item {
 }
 
 type Props = {
+  index: number;
   items: Item[];
+  onClick?: (index: number) => void;
 };
 
-const ICell: FC<Props> = ({ items }) => {
+const ICell: FC<Props> = ({ items, index, onClick }) => {
   return (
-    <View className="cell">
+    <View
+      className="cell"
+      onClick={() => {
+        if (onClick != null) {
+          onClick(index);
+        }
+      }}
+    >
       <View className="left">
         {items.length > 0
           ? items.map((item, _) => (

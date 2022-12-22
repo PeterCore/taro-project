@@ -14,7 +14,7 @@ exports.main = async (event, context) => {
     throwOnNotFound: false
   })
   return new Promise((resolve, reject) => {
-    db.collection('s_course').where({ openid: wxContext.OPENID })
+    db.collection('s_course').where({ openid: wxContext.OPENID }).orderBy('createTime', 'desc')
       .get()
       .then(res => {
         if (res.data) {

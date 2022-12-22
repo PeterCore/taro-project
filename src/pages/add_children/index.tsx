@@ -6,6 +6,7 @@ import { fetchGrades } from "./gradeSlice";
 import {
   addAll,
   addCourse,
+  addselectCourses,
   Course,
   deleteAll,
   deleteCourse,
@@ -13,8 +14,8 @@ import {
 } from "./courseSlice";
 import ICheckBox from "@/components/ICheckBox";
 import IDropDown from "@/components/IDropDown";
-import { useDidShow } from "@tarojs/taro";
-import { useToast } from "taro-hooks";
+import { useDidHide, useDidShow, useUnload } from "@tarojs/taro";
+import { useToast, useRouter } from "taro-hooks";
 import { cloudFunction } from "@/services/cloudFunction";
 import Taro from "@tarojs/taro";
 
@@ -22,19 +23,42 @@ const Index = () => {
   const dispath = useAppDispatch();
   const grades = useAppSelector((state) => state.grades.grades);
   const courses = useAppSelector((state) => state.course.courses);
+  const modiferParam = useAppSelector((state) => state.ccs.modiferParam);
+
   const selectCourses = useAppSelector((state) => state.course.selecteds);
   const [name, setName] = useState("");
   const [expands, setExpands] = useState<boolean[]>([false, false]);
   const [grade, setGrade] = useState("");
   const [all, setAll] = useState(false);
   const [showToast] = useToast({ mask: true, icon: "error" });
+  const [modifyType, setModifyType] = useState("0");
+  const router = useRouter();
 
   useDidShow(() => {
     dispath(fetchGrades());
     dispath(fetchCourses());
   });
 
-  useEffect(() => {}, [courses]);
+  // useDidHide(() => {
+  //   console.log("componentDidHide");
+  // });
+  useUnload(() => {
+    dispath(deleteAll());
+  });
+  // useDidHide(() => {
+  //   dispath(deleteAll());
+  // });
+
+  useEffect(() => {
+    const params = router[0].params;
+    const identity = `${params.type}`;
+    setModifyType(identity);
+    if (identity == "1") {
+      setName(modiferParam.name ?? "");
+      console.log(modiferParam.grade ?? "");
+      setGrade(modiferParam.grade ?? "");
+    }
+  }, []);
 
   const allSelected = (selected: boolean) => {
     setExpands([false, false]);
@@ -158,6 +182,7 @@ const Index = () => {
                         label={item.cname}
                         checked={selectCourses.includes(item.cname)}
                         onChange={(value) => {
+                          console.log(value);
                           if (value) {
                             dispath(addCourse(item.cname));
                           } else {
@@ -179,7 +204,7 @@ const Index = () => {
               : null}
           </View>
           <Button className="button" onClick={() => addStudents()}>
-            添 加
+            {modifyType === "0" ? "添 加" : "修 改"}
           </Button>
         </View>
       </View>

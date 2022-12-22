@@ -3,24 +3,27 @@ import { cloudFunction } from '@/services/cloudFunction';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 
 export interface ChildCourseInfo {
-  _id: string;
-  name: string;
-  grade: string;
-  courses: string[];
+  _id?: string;
+  name?: string;
+  grade?: string;
+  courses?: string[];
 }
 
 // { code: 1, msg: '请添加课程', result: null }
 type InitialState = {
   loading: boolean
   courses: ChildCourseInfo[]
+  modiferParam: ChildCourseInfo
   configs: Array<Array<Item>>
   error: string
+
 }
 
 const initialState: InitialState = {
   loading: false,
   courses: [],
   configs: [],
+  modiferParam: {},
   error: ''
 }
 
@@ -48,7 +51,14 @@ export const getStdCourses = createAsyncThunk('ccs/get_students_course', ()=>{
   return cloudFunction({ name: "get_students_course" }).then((res) => res.result);
 });
 
-const stdCoursesSlice = createSlice({name: "ccs", initialState,  reducers: {},
+const stdCoursesSlice = createSlice({name: "ccs", initialState,  reducers: {
+  modiferInfo: (state, action:PayloadAction<ChildCourseInfo>) => {
+    state.modiferParam = action.payload;
+ },
+  removeCacheInfo:(state) =>{
+    state.modiferParam = {}
+  }
+},
 extraReducers: builder => {
   builder.addCase(getStdCourses.pending, state => {
     state.loading = true
@@ -79,3 +89,4 @@ extraReducers: builder => {
 }});
 
 export default stdCoursesSlice.reducer
+export const {modiferInfo, removeCacheInfo } = stdCoursesSlice.actions;

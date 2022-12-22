@@ -47,6 +47,7 @@ const IDropDown: FC<Props> = ({ expand, label, onChange, renderOverlay }) => {
   );
 };
 
-export default memo(IDropDown, (oldProps, newProps) => {
-  return oldProps.expand == newProps.expand;
-});
+export default memo(IDropDown);
+// export default memo(IDropDown, (oldProps, newProps) => {
+//   return oldProps.expand == newProps.expand;
+// });
