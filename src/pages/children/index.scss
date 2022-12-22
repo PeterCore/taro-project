@@ -14,53 +14,82 @@ page {
   width: 100vw;
   height: 100vh;
   background-color: white;
+  position: relative;
   .scroll{
+    position: absolute;
     height: 100%;
     width: 100%;
-    // .cell {
-    //   display: flex;
-    //   box-sizing: border-box;
-    //   border-radius: 16px;
-    //   margin-top: 20px;
-    //   margin-left: 20px;
-    //   margin-right: 20px;
-    //   padding: 20px;
-    //   justify-content: space-between;
-    //   background-color: white;
-    //   flex-direction: row;
-    //   align-items: center;
-    //   border: 0.5px solid #ededed;
-    //   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
-    //   .left {
-    //     display: flex;
-    //     flex-direction: column;
-    //     .row{
-    //       box-sizing: border-box;
-    //       display: flex;
-    //       flex-direction: row;
-    //       margin-bottom: 20px;
-    //       .title{
-    //         height: 20px;
-    //         font-size: 30px;
-    //         width: 100%;
-    //         outline: 0;
-    //         margin-bottom: 0px;
-    //         color: #666;
+    // background-color: $bg-color-panel;
+    .cell {
+      display: flex;
+      box-sizing: border-box;
+      border-radius: 16px;
+      margin-top: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+      padding: 20px;
+      justify-content: space-between;
+      background-color: white;
+      flex-direction: row;
+      align-items: center;
+      border: 0.5px solid #ededed;
+      box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+      .left {
+        display: flex;
+        flex-direction: column;
+        .row{
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          margin-bottom: 20px;
+          .title{
+            height: 20px;
+            font-size: 30px;
+            width: 100%;
+            outline: 0;
+            margin-bottom: 0px;
+            color: #666;
 
-    //       }
-    //       .content{
-    //         height: 20px;
-    //         font-size: 30px;
-    //         width: 100%;
-    //         outline: 0;
-    //         margin-bottom: 0px;
-    //         margin-left: 10px;
-    //         color: #666;
-    //       }
-    //     }
+          }
+          .content{
+            height: 20px;
+            font-size: 30px;
+            width: 100%;
+            outline: 0;
+            margin-bottom: 0px;
+            margin-left: 10px;
+            color: #666;
+          }
+        }
 
-    //   }
-    //   @include ar
-    // }
+      }
+      @include ar
+    }
   }
+  .float-button{
+    position: absolute;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $bg-color-button;
+    // background-image: url(../../assets/images/user/outline_add_white.png);
+    width: 80px;
+    height: 80px;
+    // font-size: 33px;
+    // font-weight: 400;
+    color: $bg-color-base;
+    border-radius: 40px;
+    bottom: 100px;
+    right: 30px;
+    .float-icon{
+      width: 80px;
+      height: 80px;
+      overflow: hidden;
+      background-image: url(../../assets/images/user/outline_add_white.png);
+      background-size:cover;
+    }
+  }
+
 }

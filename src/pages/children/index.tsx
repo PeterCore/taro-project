@@ -8,30 +8,19 @@ import { cloudFunction } from "@/services/cloudFunction";
 import { useDidShow } from "@tarojs/taro";
 import { ChildCourseInfo, getStdCourses } from "./childrenSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
+import { toPage } from "@/utils/utils";
 
 const Index = () => {
   const scrollTop = 0;
-  const [cellItems, setCellItems] = useState<Item[]>([]);
   const dispath = useAppDispatch();
   const configs = useAppSelector((state) => state.ccs.configs);
-  useDidShow(() => {});
-
-  useEffect(() => {
+  useDidShow(() => {
     dispath(getStdCourses());
-  }, []);
+  });
 
-  // const configItems = (opt: ChildCourseInfo) => {
-  //   let key: keyof ChildCourseInfo;
-  //   for (key in opt) {
-  //     console.log(key as string); // 报错消失
-  //     console.log(opt[key]); // 报错消失
-  //     // do something
-  //   }
-  // };
-
-  // const getChildCourseInfo = () => {
-  //   cloudFunction
-  // };
+  // useEffect(() => {
+  //   dispath(getStdCourses());
+  // }, []);
 
   return (
     <View className="wrapper">
@@ -42,9 +31,15 @@ const Index = () => {
         scrollTop={scrollTop}
       >
         {configs.length > 0
-          ? configs.map((item, index) => <ICell items={item}></ICell>)
+          ? configs.map((item, _) => <ICell items={item}></ICell>)
           : null}
       </ScrollView>
+      <View
+        className="float-button"
+        onClick={() => toPage("/pages/add_children/index")}
+      >
+        <View className="float-icon"></View>
+      </View>
     </View>
   );
 };

@@ -6,6 +6,12 @@ cloud.init({
 
 cloud.init()
 
+const createTime = () => {
+  var date = new Date();
+  const creat_date_time = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + (date.getHours() + 8) + ':' + date.getMinutes() + ':' + date.getSeconds()
+  return creat_date_time;
+}
+
 
 // 云函数入口函数
 exports.main = async (event, context) => {
@@ -23,7 +29,7 @@ exports.main = async (event, context) => {
         } else {
           db.collection('s_course')
             .add({
-              data: { ...courseInfo, openid: wxContext.OPENID }
+              data: { ...courseInfo, createTime: createTime(), openid: wxContext.OPENID }
             }).then(res => {
               resolve({ code: 0, msg: '添加成功', result: null })
 

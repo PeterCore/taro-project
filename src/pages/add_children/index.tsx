@@ -76,6 +76,7 @@ const Index = () => {
       .then((res) => {
         if (res.code == 0) {
           showToast({ title: res.msg, icon: "success" });
+          dispath(deleteAll());
           Taro.navigateBack({
             delta: 1,
           });

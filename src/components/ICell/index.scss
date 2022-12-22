@@ -11,17 +11,18 @@
   justify-content: space-between;
   background-color: white;
   flex-direction: row;
-  align-items: center;
   border: 0.5px solid #ededed;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
   .left {
     display: flex;
+    align-items: flex-start;
     flex-direction: column;
     .row{
-      display: flex;
-      align-items: center;
+      box-sizing: border-box;
+      flex-direction: row;
       margin-top: 20px;
       margin-bottom: 20px;
+      white-space:nowrap; text-overflow:ellipsis;
       .title{
         font-size: 30px;
         line-height: 20px;

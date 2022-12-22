@@ -20,7 +20,7 @@ type InitialState = {
 const initialState: InitialState = {
   loading: false,
   courses: [],
-  configs: [[]],
+  configs: [],
   error: ''
 }
 
